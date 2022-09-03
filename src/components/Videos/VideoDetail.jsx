@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
 import useGetVideoDetail from "../../hook/useGetVideoDetail";
 import { Typography } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const VideoDetail = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const VideoDetail = () => {
   } = detail;
 
   return (
-    <Box minHeight="92vh">
+    <Box minHeight="90vh">
       <Stack direction={{ xs: "column", md: "row" }}>
         <Box flex={1}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
@@ -37,8 +38,21 @@ const VideoDetail = () => {
               px={2}
             >
               <Link to={`/channel/${channelId}`}>
-                <Typography>{channelTitle}</Typography>
+                <Typography variant="subtitle1" color="#fff">
+                  {channelTitle}
+                  <CheckCircleIcon
+                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                  />
+                </Typography>
               </Link>
+              <Stack direction="row" gap="20px" alignItems="center">
+                <Typography variant="subtitle1" sx={{ opacity: 0.7 }}>
+                  {parseInt(viewCount).toLocaleString()} views
+                </Typography>
+                <Typography variant="subtitle1" sx={{ opacity: 0.7 }}>
+                  {parseInt(likeCount).toLocaleString()} likes
+                </Typography>
+              </Stack>
             </Stack>
           </Box>
         </Box>
